@@ -81,7 +81,14 @@ const transfer = async (req, res) => {
 
 const withdrawFunds = async (req, res) => {
   const { accountNumber, amount } = req.body;
+  const token = req.header("x-auth-token");
+
+  const decoded = jwt.decode(token, process.env.JSON_PRIVATE_KEY);
   const [user] = await getAccountDetails(accountNumber);
+
+  if (user.account_number !== decoded.accountNum)
+    return res.status(403).send("Please login to make transactions");
+
   if (user && user.balance > amount) {
     withdraw(accountNumber, amount);
     res.json({ msg: "Transaction successful. Please take your cash" });

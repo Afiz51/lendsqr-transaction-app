@@ -10,6 +10,6 @@ const router = require("express").Router();
 router.post("/create", createAccount);
 router.post("/fund-account", fundAccount);
 router.post("/transfer", auth, transfer);
-router.post("/withdraw", withdrawFunds);
+router.post("/withdraw", auth, withdrawFunds);
 
 module.exports = router;
