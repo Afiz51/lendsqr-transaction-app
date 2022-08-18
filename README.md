@@ -25,6 +25,8 @@
   3. Check the sample.env file and fill out the keys with your details
   
   4. create a database to connect to on mySQL workbench
+  
+  5. To run the app, cd into src and run node index.js 
 
   
   ## Routes that can be run
